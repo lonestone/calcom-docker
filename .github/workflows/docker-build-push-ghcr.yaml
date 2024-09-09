@@ -1,17 +1,11 @@
 name: Build and push image to GitHub Container Registry
 
-on:
-  pull_request
+on: pull_request
 
 # on:
 #   push:
 #     branches:
 #       - "main"
-  # workflow_run:
-  #   workflows: ["Update Calendso"]
-  #   branches: [main]
-  #   types:
-  #     - completed
 
 jobs:
   build:
@@ -66,8 +60,8 @@ jobs:
         with:
           context: ./
           file: ./Dockerfile
-          load: true  # Load the image into the Docker daemon
-          push: false  # Do not push the image at this stage
+          load: true # Load the image into the Docker daemon
+          push: false # Do not push the image at this stage
           platforms: linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -75,7 +69,7 @@ jobs:
             NEXT_PUBLIC_WEBAPP_URL=${{ secrets.NEXT_PUBLIC_WEBAPP_URL }}
             NEXT_PUBLIC_API_V2_URL=${{ secrets.NEXT_PUBLIC_API_V2_URL }}
             NEXT_PUBLIC_LICENSE_CONSENT=${{ secrets.NEXT_PUBLIC_LICENSE_CONSENT }}
-      
+
       - name: Test runtime
         run: |
           tags="${{ steps.meta.outputs.tags }}"
@@ -96,7 +90,6 @@ jobs:
             $tag &
 
             server_pid=$!
-
 
             echo "Waiting for the server to start..."
             sleep 120

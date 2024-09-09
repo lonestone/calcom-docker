@@ -34,8 +34,6 @@ RUN yarn prisma generate
 RUN yarn --cwd packages/embeds/embed-core workspace @calcom/embed-core run build
 RUN yarn --cwd apps/web workspace @calcom/web run build
 
-# RUN yarn plugin import workspace-tools && \
-#     yarn workspaces focus --all --production
 RUN rm -rf node_modules/.cache .yarn/cache apps/web/.next/cache
 
 FROM node:18 as builder-two
@@ -72,9 +70,6 @@ ENV NEXT_PUBLIC_WEBAPP_URL=$NEXT_PUBLIC_WEBAPP_URL \
 
 ENV NODE_ENV production
 EXPOSE 3000
-
-# HEALTHCHECK --interval=30s --timeout=30s --retries=5 \
-#     CMD wget --spider http://localhost:3000 || exit 1
 
 HEALTHCHECK --interval=30s --timeout=30s --retries=5 \
     CMD wget --spider $NEXT_PUBLIC_WEBAPP_URL || exit 1
