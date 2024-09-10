@@ -1,3 +1,14 @@
+# Lonestone Calcom
+
+This repository is a fork from [@calcom/docker](https://github.com/calcom/docker).
+
+## Contents
+
+### 1. [Setup project](SETUP.md) (Our documentation)
+### 2. [Docker](#Docker) (official documentation from the original repo)
+### 3. [Security note](SECURITY.md) (from the original repo)
+
+
 <!-- PROJECT LOGO -->
 <p align="center">
   <a href="https://github.com/calcom/cal.com">
