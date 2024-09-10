@@ -53,6 +53,8 @@ jobs:
         with:
           images: |
             ghcr.io/matheoleger/cal.com
+          tags: |
+            type=sha,prefix=,format=short
 
       - name: Build image
         id: docker_build
